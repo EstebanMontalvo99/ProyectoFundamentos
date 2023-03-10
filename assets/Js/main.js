@@ -80,10 +80,8 @@ menu.addEventListener(`click`, function () {
 
 window.addEventListener("scroll", function () {
   if (window.scrollY > 50) {
-    // Add the "headerscrolled" class to the "nav" element
     header.classList.add("headerscrolled");
   } else {
-    // Remove the "headerscrolled" class from the "nav" element
     header.classList.remove("headerscrolled");
   }
 });

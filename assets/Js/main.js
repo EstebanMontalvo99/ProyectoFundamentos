@@ -43,45 +43,53 @@ function handlerPrintAmountProducts(db) {
 function handleTotal(db) {
   handlerPrintAmountProducts(db); //Esto es del ultimo video que ya viste va al ultimo
 }
+
 async function main() {
   const db = {
     products:
       JSON.parse(window.localStorage.getItem(`products`)) ||
       (await getProducts()),
-    cart: {},
+    cart: JSON.parse(window.localStorage.getItem(`cart`)) || {},
   };
   printProducts(db);
   handlerPrintAmountProducts(db);
+
+  bxMenu.addEventListener(`click`, function () {
+    menu.classList.toggle("menu_show");
+    bxMenu.replaceWith(closeMenu);
+    darkMode.style.display = "none";
+    closeMenu.style.display = "flex";
+  });
+  closeMenu.addEventListener(`click`, function () {
+    menu.classList.toggle("menu_show");
+    closeMenu.replaceWith(bxMenu);
+    darkMode.style.display = "block";
+  });
+
+  menu.addEventListener(`click`, function () {
+    menu.classList.toggle("menu_show");
+    closeMenu.replaceWith(bxMenu);
+    darkMode.style.display = "flex";
+  });
+
+  iconCart.addEventListener("click", function () {
+    cart.classList.toggle("showCart");
+  });
+  productsHTML.addEventListener(`click`, function (e) {
+    if (e.target.classList.contains("bx-plus")) {
+      const id = Number(e.target.id);
+      const productFind = db.products.find((product) => product.id === id);
+
+      if (db.cart[productFind.id]) {
+        if (productFind.quantity === db.cart[productFind.id].amount)
+          return alert("No tenemos mas en bodega");
+        db.cart[productFind.id].amount++;
+      } else {
+        db.cart[productFind.id] = { ...productFind, amount: 1 };
+      }
+    }
+  });
+  window.localStorage.setItem("cart", JSON.stringify(db.cart));
+  console.log(db.cart);
 }
 main();
-const header = document.querySelector("header");
-const menu = document.querySelector(".menu");
-const bxMenu = document.querySelector(".bxMenu");
-const darkMode = document.querySelector(".darkMode");
-const closeMenu = document.querySelector(".closeMenu");
-
-bxMenu.addEventListener(`click`, function () {
-  menu.classList.toggle("menu_show");
-  bxMenu.replaceWith(closeMenu);
-  darkMode.style.display = "none";
-  closeMenu.style.display = "flex";
-});
-closeMenu.addEventListener(`click`, function () {
-  menu.classList.toggle("menu_show");
-  closeMenu.replaceWith(bxMenu);
-  darkMode.style.display = "block";
-});
-
-menu.addEventListener(`click`, function () {
-  menu.classList.toggle("menu_show");
-  closeMenu.replaceWith(bxMenu);
-  darkMode.style.display = "flex";
-});
-
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 50) {
-    header.classList.add("headerscrolled");
-  } else {
-    header.classList.remove("headerscrolled");
-  }
-});

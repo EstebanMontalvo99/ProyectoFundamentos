@@ -121,6 +121,7 @@ nav a svg {
 
   position: relative;
 }
+
 /* CART */
 .cart {
   height: calc(100vh);
@@ -139,28 +140,53 @@ nav a svg {
   transition: margin-right 1s;
 }
 .cartProducts {
-  background: green;
+  background-color: var(--white);
   height: 85%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
+  background-color: white;
 }
-.cartProductImg {
-  padding: 1rem;
-}
-.cartProductImg img {
-  width: ;
-  :50px ;
-}
+
 .cartProduct {
   padding: 1rem;
-  background-color: red;
   display: flex;
+  align-items: center;
 }
+.cartProductImg {
+  width: 30%;
+  border-radius: 1rem;
+  border: 1px solid var(--redish);
+}
+.cartProductBody {
+  width: 60%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cartProductBodyOp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bx-trash {
+  color: var(--redish);
+}
+.cartProductImg img {
+  width: 100%;
+}
+
 .cartTotal {
   background-color: blueviolet;
   height: 15%;
+}
+
+.productInfo h4 {
+  min-height: 54px;
 }
 
 ::-webkit-scrollbar {
@@ -276,14 +302,11 @@ section {
   flex-direction: column;
   gap: 1rem;
 }
-.productInfo h4 {
-  min-height: 54px;
-}
 .productInfo span {
   font-weight: normal;
   font-size: 0.8rem;
 }
-.bx-plus {
+.productInfo .bx-plus {
   background-color: white;
   box-shadow: var(--shadow);
   padding: 0.5rem;

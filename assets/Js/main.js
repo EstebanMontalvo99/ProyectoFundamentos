@@ -75,10 +75,6 @@ async function main() {
   iconCart.addEventListener("click", function () {
     cart.classList.toggle("showCart");
   });
-  productsHTML.addEventListener(`click`, function (e) {
-    if (e.target.classList.contains("bx-plus")) {
-      const id = Number(e.target.id);
-      const productFind = db.products.find((product) => product.id === id);
 
       if (db.cart[productFind.id]) {
         if (productFind.quantity === db.cart[productFind.id].amount)

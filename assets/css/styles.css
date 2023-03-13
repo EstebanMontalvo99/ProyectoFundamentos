@@ -141,6 +141,22 @@ nav a svg {
 .cartProducts {
   background: green;
   height: 85%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cartProductImg {
+  padding: 1rem;
+}
+.cartProductImg img {
+  width: ;
+  :50px ;
+}
+.cartProduct {
+  padding: 1rem;
+  background-color: red;
+  display: flex;
 }
 .cartTotal {
   background-color: blueviolet;

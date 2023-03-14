@@ -266,7 +266,7 @@ function darkMode() {
     );
     document.documentElement.style.setProperty(
       "--footerColor",
-      "hsl(0, 0%, 90%))"
+      "hsl(0, 0%, 90%)"
     );
     document.documentElement.style.setProperty("--white", "white");
     moonIcon.replaceWith(sunIcon);

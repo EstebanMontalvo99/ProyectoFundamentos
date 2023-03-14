@@ -97,8 +97,8 @@ function handleTotal(db) {
     printTotal(db);
     printProductsInCart(db);
     printProducts(db);
+    handlerPrintAmountProducts(db);
   });
-  handlerPrintAmountProducts(db);
 }
 function addProductsToCart(db) {
   const productsHTML = document.querySelector(".products");

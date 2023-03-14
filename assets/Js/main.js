@@ -88,7 +88,6 @@ function handleTotal(db) {
       } else {
         currentProducts.push(product);
       }
-      console.log(currentProducts);
     }
     db.products = currentProducts;
     db.cart = {};

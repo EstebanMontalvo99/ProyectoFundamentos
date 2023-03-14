@@ -29,7 +29,7 @@ ul {
 }
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--titleH2);
 }
 img {
   width: 100%;
@@ -422,7 +422,7 @@ footer {
 }
 
 footer h3 {
-  color: var(--btn-color);
+  color: var(--titleH2);
 }
 footer li {
   margin-top: 01rem;
@@ -446,6 +446,9 @@ footer li {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+.madeBy a {
+  color: var(--btn-color);
 }
 @media (max-width: 700px) {
   .bxMenu {

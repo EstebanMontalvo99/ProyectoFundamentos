@@ -11,9 +11,11 @@
   --redish: hsl(354, 78%, 60%);
   --titleH2: hsl(0, 0%, 15%);
   --text: hsl(0, 0%, 55%);
+  --texth3: hsla(0, 7%, 16%, 0.849);
   --bgColor: hsl(206, 4%, 97%);
   --btn-color: hsl(0, 0%, 17%);
   --footerColor: hsl(0, 0%, 90%);
+  --gray: lightgray;
 }
 html {
   scroll-behavior: smooth;
@@ -91,6 +93,7 @@ nav a svg {
   width: 70%;
 }
 .icons {
+  color: var(--titleH2);
   display: flex;
   flex-direction: row;
   cursor: pointer;
@@ -147,7 +150,7 @@ nav a svg {
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .cartProduct {
@@ -161,6 +164,7 @@ nav a svg {
   border: 1px solid var(--redish);
 }
 .cartProductBody {
+  color: var(--titleH2);
   width: 60%;
   padding: 1rem;
   display: flex;
@@ -207,6 +211,12 @@ nav a svg {
   font-size: 1.1rem;
   cursor: pointer;
 }
+.productImg {
+  background-color: var(--gray);
+}
+.product {
+  color: var(--titleH2);
+}
 .productInfo h4 {
   min-height: 54px;
 }
@@ -222,7 +232,7 @@ nav a svg {
 ::-webkit-scrollbar {
   width: 8px;
   height: 10px;
-  background-color: #f5f5f5;
+  background-color: var(--white);
 }
 
 /* customize the scrollbar thumb */
@@ -232,15 +242,16 @@ nav a svg {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: white;
+  background-color: var(--white);
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: #f5f5f5;
+  background-color: var(--white);
 }
 
 .amountProducts {
   width: 18px;
+
   height: 18px;
   font-size: 0.8rem;
   background-color: var(--btn-color);
@@ -309,11 +320,46 @@ section {
   padding: 1rem 2rem;
   margin-top: 2rem;
 }
+.filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 0 auto;
+  width: 45%;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+.card {
+  padding: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card p:nth-child(1) {
+  font-weight: bold;
+  color: var(--texth3);
+}
+.card p:nth-child(2) {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+.card:hover {
+  background-color: var(--btn-color);
+  transition: color 1s;
+  transition: background-color 1s;
+  color: var(--white);
+}
+.card:hover p {
+  transition: color 0.5s;
+  color: var(--white);
+}
+
 .products {
   display: grid;
-  padding-top: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(213px, 1fr));
   max-width: 1024px;
+  border-radius: 4rem;
   gap: 1rem;
   margin: 0 auto;
   margin-bottom: 5rem;
@@ -322,6 +368,7 @@ section {
   border-radius: 1rem;
   box-shadow: var(--shadow);
   background-color: var(--white);
+  overflow: hidden;
 }
 .productImg {
   padding: 1rem;
@@ -337,13 +384,18 @@ section {
   font-size: 0.8rem;
 }
 .productInfo .bx-plus {
-  background-color: white;
+  background-color: var(--white);
   box-shadow: var(--shadow);
   padding: 0.5rem;
   border-radius: 50%;
   color: var(--titleH2);
   font-size: 1.5rem;
   cursor: pointer;
+  transition: background-color 0.5s;
+}
+.productInfo .bx-plus:hover {
+  background-color: var(--redish);
+  transition: background-color 1s;
 }
 footer {
   position: inherit;
@@ -428,6 +480,9 @@ footer li {
   nav {
     max-width: 1024px;
   }
+  .filter {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 @media (min-width: 700px) {
   .home {
@@ -459,5 +514,35 @@ footer li {
   }
   .ourInfo h3 {
     margin-top: 0rem;
+  }
+}
+.loading {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: var(--white);
+  z-index: 1000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.7s;
+}
+.loading svg {
+  width: 25%;
+  height: 25%;
+  fill: var(--redish);
+  animation: move-up-down 1.5s ease-in-out infinite;
+}
+
+@keyframes move-up-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

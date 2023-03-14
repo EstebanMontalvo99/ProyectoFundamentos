@@ -14,6 +14,9 @@ function printProducts(db) {
   const productsHTML = document.querySelector(".products");
   let html = ``;
   for (const product of db.products) {
+    const buttonAdd = product.quantity
+      ? `<i class='bx bx-plus' id="${product.id}"></i>`
+      : "<span class=soldOut>SOLD OUT</span>";
     html += `
     <div class="product">
       <div class="productImg">
@@ -24,7 +27,7 @@ function printProducts(db) {
         <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
         <h5>
            $${product.price} 
-          <i class='bx bx-plus' id="${product.id}"></i>
+          ${buttonAdd}
         </h5>
         </div>
       </div>`;
@@ -55,7 +58,7 @@ function printProductsInCart(db) {
         <h4>${name} | $${price}</h4>
         <p>Stock: ${quantity}</p>
         
-      <div class="cartProductBodyOp">
+      <div class="cartProductBodyOp" id="${id}">
         <i class='bx bx-minus'></i>
         <span>${amount}</span>
         <i class='bx bx-plus' ></i>
@@ -67,7 +70,35 @@ function printProductsInCart(db) {
   cartProductsHTML.innerHTML = html;
 }
 function handleTotal(db) {
-  handlerPrintAmountProducts(db); //Esto es del ultimo video que ya viste va al ultimo
+  const btnBuy = document.querySelector(".btnBuy");
+  btnBuy.addEventListener("click", function () {
+    if (!Object.values(db.cart).length)
+      return alert("Tienes que tener algo en el carrito");
+    const response = confirm("Seguro que quieres comprar?");
+    if (!response) return;
+    const currentProducts = [];
+
+    for (const product of db.products) {
+      const productCart = db.cart[product.id];
+      if (product.id === productCart?.id) {
+        currentProducts.push({
+          ...product,
+          quantity: product.quantity - productCart.amount,
+        });
+      } else {
+        currentProducts.push(product);
+      }
+      console.log(currentProducts);
+    }
+    db.products = currentProducts;
+    db.cart = {};
+    window.localStorage.setItem(`products`, JSON.stringify(db.products));
+    window.localStorage.setItem(`cart`, JSON.stringify(db.cart));
+    printTotal(db);
+    printProductsInCart(db);
+    printProducts(db);
+  });
+  handlerPrintAmountProducts(db);
 }
 function addProductsToCart(db) {
   const productsHTML = document.querySelector(".products");
@@ -85,8 +116,9 @@ function addProductsToCart(db) {
       }
     }
     window.localStorage.setItem("cart", JSON.stringify(db.cart));
-    console.log(db.cart);
     printProductsInCart(db);
+    printTotal(db);
+    handlerPrintAmountProducts(db);
   });
 }
 function handleProductinCart(db) {
@@ -116,7 +148,24 @@ function handleProductinCart(db) {
     }
     window.localStorage.setItem(`cart`, JSON.stringify(db.cart));
     printProductsInCart(db);
+    printTotal(db);
+    handlerPrintAmountProducts(db);
   });
+}
+function printTotal(db) {
+  const infoTotalHTML = document.querySelector(".infoTotal");
+  const infoAmountHTML = document.querySelector(".infoAmount");
+
+  let totalProducts = 0,
+    amountProducts = 0;
+
+  for (const product in db.cart) {
+    const { amount, price } = db.cart[product];
+    amountProducts += amount;
+    totalProducts += price * amount;
+  }
+  infoAmountHTML.textContent = "$" + totalProducts + ".00";
+  infoTotalHTML.textContent = amountProducts + " units";
 }
 async function main() {
   const db = {
@@ -129,6 +178,9 @@ async function main() {
   handlerPrintAmountProducts(db);
   addProductsToCart(db);
   printProductsInCart(db);
+  handleProductinCart(db);
+  printTotal(db);
+  handleTotal(db);
 }
 
 main();

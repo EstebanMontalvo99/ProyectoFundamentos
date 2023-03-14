@@ -172,6 +172,9 @@ nav a svg {
   align-items: center;
   gap: 0.5rem;
 }
+.cartProductBodyOp i {
+  cursor: pointer;
+}
 
 .bx-trash {
   color: var(--redish);
@@ -181,14 +184,41 @@ nav a svg {
 }
 
 .cartTotal {
-  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
   height: 15%;
+  padding: 1rem;
+  gap: 0.5rem;
 }
-
+.cartTotalInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btnBuy {
+  padding: 0.5rem;
+  width: 100%;
+  background-color: var(--btn-color);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
 .productInfo h4 {
   min-height: 54px;
 }
-
+.soldOut {
+  color: var(--white);
+  background-color: var(--redish);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  user-select: none;
+  font-weight: bolder;
+  display: inline-block;
+}
 ::-webkit-scrollbar {
   width: 8px;
   height: 10px;

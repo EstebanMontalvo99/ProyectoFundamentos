@@ -218,20 +218,15 @@ function darkMode() {
   const moonIcon = document.querySelector(".moon");
   const sunIcon = document.querySelector(".sun");
   moonIcon.addEventListener("click", function () {
+    sunIcon.style.display = "block";
     document.documentElement.style.setProperty(
       "--redish",
       "hsl(182, 53%, 74%)"
     );
     document.documentElement.style.setProperty("--titleH2", "white");
     document.documentElement.style.setProperty("--text", "hsl(182, 53%, 74%)");
-    document.documentElement.style.setProperty(
-      "--btn-color",
-      "hsl(246, 16%, 12%)"
-    );
-    document.documentElement.style.setProperty(
-      "--texth3",
-      "hsl(182, 53%, 74%)"
-    );
+    document.documentElement.style.setProperty("--btn-color", "white");
+    document.documentElement.style.setProperty("--texth3", "white");
     document.documentElement.style.setProperty(
       "--bgColor",
       "hsl(249, 19%, 14%)"

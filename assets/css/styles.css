@@ -99,6 +99,11 @@ nav a svg {
   cursor: pointer;
   gap: 10px;
 }
+.sun {
+  fill: var(--titleH2);
+  font-size: 1.5rem;
+  display: none;
+}
 .icons img {
   width: 1.5rem;
 }
@@ -351,7 +356,7 @@ section {
   background-color: var(--btn-color);
   transition: color 1s;
   transition: background-color 1s;
-  color: var(--white);
+  color: var(--btn-color);
 }
 .card:hover p {
   transition: color 0.5s;

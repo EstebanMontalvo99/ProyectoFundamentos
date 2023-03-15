@@ -214,6 +214,9 @@ nav a svg {
 .productImg {
   background-color: var(--gray);
 }
+.productImg :hover {
+  animation: move-up-down 1.5s ease-in-out 2;
+}
 .product {
   color: var(--titleH2);
 }

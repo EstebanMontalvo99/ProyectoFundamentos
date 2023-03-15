@@ -282,23 +282,22 @@ function showShirts(db) {
           : "<span class=soldOut>SOLD OUT</span>";
 
         html += `
-    <div class="product">
-      <div class="productImg">
-        <img src="${product.image}" alt="Imagen">
-      </div>
-
-      <div class="productInfo">
-        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
-        <h5>
-           $${product.price} 
-          ${buttonAdd}
-        </h5>
-        </div>
-      </div>`;
+          <div class="product scale-animation">
+            <div class="productImg">
+              <img src="${product.image}" alt="Imagen">
+            </div>
+            <div class="productInfo">
+              <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+              <h5>
+                $${product.price}
+                ${buttonAdd}
+              </h5>
+            </div>
+          </div>
+        `;
       }
-
-      productsHTML.innerHTML = html;
     }
+    productsHTML.innerHTML = html;
   });
 }
 
@@ -314,7 +313,7 @@ function showHoddies(db) {
           : "<span class=soldOut>SOLD OUT</span>";
 
         html += `
-    <div class="product">
+    <div class="product" style="opacity: 0">
       <div class="productImg">
         <img src="${product.image}" alt="Imagen">
       </div>
@@ -331,8 +330,19 @@ function showHoddies(db) {
 
       productsHTML.innerHTML = html;
     }
+
+    const products = document.querySelectorAll(".product");
+    let delay = 0;
+
+    products.forEach((product, index) => {
+      setTimeout(() => {
+        product.style.opacity = 1;
+      }, delay);
+      delay += 100;
+    });
   });
 }
+
 function showAll(db) {
   const productsHTML = document.querySelector(".products");
   const showAll = document.querySelector(".showAll");
@@ -344,23 +354,32 @@ function showAll(db) {
         : "<span class=soldOut>SOLD OUT</span>";
 
       html += `
-    <div class="product">
-      <div class="productImg">
-        <img src="${product.image}" alt="Imagen">
-      </div>
+        <div class="product slide-in"> <!-- add the slide-in class -->
+          <div class="productImg">
+            <img src="${product.image}" alt="Imagen">
+          </div>
 
-      <div class="productInfo">
-        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
-        <h5>
-           $${product.price} 
-          ${buttonAdd}
-        </h5>
-        </div>
-      </div>`;
+          <div class="productInfo">
+            <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+            <h5>
+              $${product.price} 
+              ${buttonAdd}
+            </h5>
+          </div>
+        </div>`;
     }
     productsHTML.innerHTML = html;
+
+    // Remove the slide-in class after a delay
+    const products = document.querySelectorAll(".product");
+    setTimeout(() => {
+      products.forEach((product) => {
+        product.classList.remove("slide-in");
+      });
+    }, 300);
   });
 }
+
 function showSwaters(db) {
   const productsHTML = document.querySelector(".products");
   const sweater = document.querySelector(".sweater");
@@ -373,23 +392,29 @@ function showSwaters(db) {
           : "<span class=soldOut>SOLD OUT</span>";
 
         html += `
-    <div class="product">
-      <div class="productImg">
-        <img src="${product.image}" alt="Imagen">
-      </div>
+          <div class="product fade-in">
+            <div class="productImg">
+              <img src="${product.image}" alt="Imagen">
+            </div>
 
-      <div class="productInfo">
-        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
-        <h5>
-           $${product.price} 
-          ${buttonAdd}
-        </h5>
-        </div>
-      </div>`;
+            <div class="productInfo">
+              <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+              <h5>
+                $${product.price} 
+                ${buttonAdd}
+              </h5>
+            </div>
+          </div>`;
       }
 
       productsHTML.innerHTML = html;
     }
+    const products = document.querySelectorAll(".product");
+    setTimeout(() => {
+      products.forEach((product) => {
+        product.classList.remove("fade-in");
+      });
+    }, 300);
   });
 }
 

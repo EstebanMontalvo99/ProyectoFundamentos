@@ -17,6 +17,7 @@ function printProducts(db) {
     const buttonAdd = product.quantity
       ? `<i class='bx bx-plus' id="${product.id}"></i>`
       : "<span class=soldOut>SOLD OUT</span>";
+
     html += `
     <div class="product">
       <div class="productImg">
@@ -46,7 +47,6 @@ function handlerPrintAmountProducts(db) {
 function printProductsInCart(db) {
   const cartProductsHTML = document.querySelector(".cartProducts");
   let html = ``;
-
   for (const product in db.cart) {
     const { quantity, price, name, image, id, amount } = db.cart[product];
 
@@ -270,6 +270,129 @@ function darkMode() {
     sunIcon.replaceWith(moonIcon);
   });
 }
+function showShirts(db) {
+  const productsHTML = document.querySelector(".products");
+  const shirt = document.querySelector(".shirt");
+  shirt.addEventListener("click", function () {
+    let html = ``;
+    for (const product of db.products) {
+      if (product.category === "shirt") {
+        const buttonAdd = product.quantity
+          ? `<i class='bx bx-plus' id="${product.id}"></i>`
+          : "<span class=soldOut>SOLD OUT</span>";
+
+        html += `
+    <div class="product">
+      <div class="productImg">
+        <img src="${product.image}" alt="Imagen">
+      </div>
+
+      <div class="productInfo">
+        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+        <h5>
+           $${product.price} 
+          ${buttonAdd}
+        </h5>
+        </div>
+      </div>`;
+      }
+
+      productsHTML.innerHTML = html;
+    }
+  });
+}
+
+function showHoddies(db) {
+  const productsHTML = document.querySelector(".products");
+  const hoddie = document.querySelector(".hoddie");
+  hoddie.addEventListener("click", function () {
+    let html = ``;
+    for (const product of db.products) {
+      if (product.category === "hoddie") {
+        const buttonAdd = product.quantity
+          ? `<i class='bx bx-plus' id="${product.id}"></i>`
+          : "<span class=soldOut>SOLD OUT</span>";
+
+        html += `
+    <div class="product">
+      <div class="productImg">
+        <img src="${product.image}" alt="Imagen">
+      </div>
+
+      <div class="productInfo">
+        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+        <h5>
+           $${product.price} 
+          ${buttonAdd}
+        </h5>
+        </div>
+      </div>`;
+      }
+
+      productsHTML.innerHTML = html;
+    }
+  });
+}
+function showAll(db) {
+  const productsHTML = document.querySelector(".products");
+  const showAll = document.querySelector(".showAll");
+  showAll.addEventListener("click", function () {
+    let html = ``;
+    for (const product of db.products) {
+      const buttonAdd = product.quantity
+        ? `<i class='bx bx-plus' id="${product.id}"></i>`
+        : "<span class=soldOut>SOLD OUT</span>";
+
+      html += `
+    <div class="product">
+      <div class="productImg">
+        <img src="${product.image}" alt="Imagen">
+      </div>
+
+      <div class="productInfo">
+        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+        <h5>
+           $${product.price} 
+          ${buttonAdd}
+        </h5>
+        </div>
+      </div>`;
+    }
+    productsHTML.innerHTML = html;
+  });
+}
+function showSwaters(db) {
+  const productsHTML = document.querySelector(".products");
+  const sweater = document.querySelector(".sweater");
+  sweater.addEventListener("click", function () {
+    let html = ``;
+    for (const product of db.products) {
+      if (product.category === "sweater") {
+        const buttonAdd = product.quantity
+          ? `<i class='bx bx-plus' id="${product.id}"></i>`
+          : "<span class=soldOut>SOLD OUT</span>";
+
+        html += `
+    <div class="product">
+      <div class="productImg">
+        <img src="${product.image}" alt="Imagen">
+      </div>
+
+      <div class="productInfo">
+        <h4>${product.name} <span><b>Stock</b>: ${product.quantity}</span> </h4>
+        <h5>
+           $${product.price} 
+          ${buttonAdd}
+        </h5>
+        </div>
+      </div>`;
+      }
+
+      productsHTML.innerHTML = html;
+    }
+  });
+}
+
 async function main() {
   const db = {
     products:
@@ -287,6 +410,10 @@ async function main() {
   handleCartandMenuShow();
   loading();
   darkMode();
+  showAll(db);
+  showShirts(db);
+  showHoddies(db);
+  showSwaters(db);
 }
 
 main();

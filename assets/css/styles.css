@@ -142,7 +142,7 @@ nav a svg {
   right: 0;
   display: flex;
   flex-direction: column;
-  margin-right: -100%;
+  margin-right: -200%;
   transition: margin-right 1s;
 }
 .showCart {
@@ -330,6 +330,10 @@ section {
   padding: 1rem 2rem;
   margin-top: 2rem;
 }
+.body-btn:hover {
+  background-color: var(--redish);
+  transition: background-color 0.5s;
+}
 .filter {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -514,8 +518,12 @@ footer li {
     width: 75%;
     max-height: 100%;
   }
+
   .homeInfo {
     margin-top: 10rem;
+  }
+  .filter {
+    margin-bottom: 1rem;
   }
   .bx-shopping-bag {
     font-size: 1.5rem;
@@ -525,6 +533,7 @@ footer li {
     align-items: flex-start;
     justify-content: space-around;
   }
+
   .ourInfo h3 {
     margin-top: 0rem;
   }

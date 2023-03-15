@@ -49,6 +49,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  z-index: 100;
 }
 nav {
   background-color: transparent;
@@ -63,6 +64,7 @@ nav {
   top: 0;
   transition: background-color 1s;
   transition: height 1s;
+  z-index: 100;
 }
 .logo a {
   display: grid;
